@@ -144,11 +144,11 @@ class InstanceData final {
   static InstanceData* Get(Env env);
 };
 
-TypedArray WrapPointerImpl(Env env, char* ptr, size_t length);
+Value WrapPointerImpl(Env env, char* ptr, size_t length);
 char* GetBufferDataImpl(Value val);
 
 template <typename T>
-inline TypedArray WrapPointer(Env env, T* ptr, size_t length = 0) {
+inline Value WrapPointer(Env env, T* ptr, size_t length = 0) {
   return WrapPointerImpl(env, reinterpret_cast<char*>(ptr), length);
 }
 
