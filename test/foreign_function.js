@@ -1,6 +1,6 @@
 'use strict';
 const assert = require('assert');
-const ref = require('@makeomatic/ref-napi');
+const ref = require('@alexssmusica/ref-napi');
 const Array = require('ref-array-di')(ref);
 const Struct = require('ref-struct-di')(ref);
 const ffi = require('../');

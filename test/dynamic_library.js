@@ -1,7 +1,7 @@
 'use strict';
 const assert = require('assert');
 const path = require('path');
-const ref = require('@makeomatic/ref-napi');
+const ref = require('@alexssmusica/ref-napi');
 const ffi = require('../');
 const fs = require('fs-extra');
 const DynamicLibrary = ffi.DynamicLibrary;

@@ -1,6 +1,6 @@
 {
   "name": "@alexssmusica/ffi-napi",
-  "version": "4.0.19",
+  "version": "4.0.20",
   "publishConfig": {
     "access": "public"
   },
@@ -25,11 +25,11 @@
   ],
   "homepage": "http://github.com/Alexssmusica/ffi-napi",
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "main": "./lib/ffi",
   "dependencies": {
-    "@makeomatic/ref-napi": "^3.0.6",
+    "@alexssmusica/ref-napi": "^4.0.12",
     "debug": "^4.3.7",
     "get-uv-event-loop-napi-h": "^1.0.5",
     "node-addon-api": "^8.1.0",
