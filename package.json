@@ -1,6 +1,6 @@
 {
   "name": "@alexssmusica/ffi-napi",
-  "version": "4.0.24",
+  "version": "4.0.25",
   "publishConfig": {
     "access": "public"
   },
@@ -11,7 +11,7 @@
     "Nathan Rajlich <nathan@tootallnate.net>",
     "Gabor Mezo <gabor.mezo@outlook.com>"
   ],
-  "description": "A foreign function interface (FFI) for Node.js, N-API style",
+  "description": "A foreign function interface (FFI) for Node.js, N-API style, with \"v8::ArrayBuffer::GetBackingStore\" patch",
   "keywords": [
     "foreign",
     "function",
@@ -25,12 +25,12 @@
   ],
   "homepage": "http://github.com/Alexssmusica/ffi-napi",
   "engines": {
-    "node": ">=16"
+    "node": ">=12.22.12"
   },
+  "types": "types/index.d.ts",
   "main": "./lib/ffi",
   "dependencies": {
-    "@alexssmusica/ref-napi": "^4.0.15",
-    "electron-bindings": "^1.0.2",
+    "@alexssmusica/ref-napi": "^4.0.16",
     "debug": "^4.3.7",
     "get-uv-event-loop-napi-h": "^1.0.5",
     "node-addon-api": "^8.1.0",
@@ -38,34 +38,22 @@
     "ref-struct-di": "^1.1.0"
   },
   "devDependencies": {
-    "@semantic-release/commit-analyzer": "^13.0.0",
-    "@semantic-release/github": "^10.3.5",
-    "@semantic-release/npm": "^12.0.1",
     "fs-extra": "^11.2.0",
     "mocha": "^10.7.3",
-    "node-gyp": "^11.0.0",
     "nyc": "^17.1.0",
     "prebuildify": "^6.0.1",
     "prebuildify-ci": "^1.0.5",
-    "ref-array-di": "^1.2.1",
-    "semantic-release": "^24.1.1"
+    "ref-array-di": "^1.2.1"
   },
   "scripts": {
     "install": "node-gyp-build",
-    "prebuild": "prebuildify --napi --tag-armv --tag-uv",
-    "test": "node-gyp rebuild --directory test && nyc mocha --v8-expose-gc --reporter spec"
+    "prebuild": "prebuildify --napi --tag-armv --tag-uv"
   },
-  "targets": [
-    {
-      "target_name": "binding",
-      "sources": [ "src/binding.cc" ]
-    }
-  ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/Alexssmusica/node-ffi-napi.git"
+    "url": "http://github.com/Alexssmusica/ffi-napi.git"
   },
   "bugs": {
-    "url": "http://github.com/Alexssmusica/node-ffi-napi/issues"
+    "url": "http://github.com/Alexssmusica/ffi-napi/issues"
   }
 }
