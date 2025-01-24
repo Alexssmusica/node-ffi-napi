@@ -1,6 +1,6 @@
 {
   "name": "@alexssmusica/ffi-napi",
-  "version": "4.0.20",
+  "version": "4.0.21",
   "publishConfig": {
     "access": "public"
   },
@@ -29,7 +29,7 @@
   },
   "main": "./lib/ffi",
   "dependencies": {
-    "@alexssmusica/ref-napi": "^4.0.12",
+    "@alexssmusica/ref-napi": "^4.0.13",
     "debug": "^4.3.7",
     "get-uv-event-loop-napi-h": "^1.0.5",
     "node-addon-api": "^8.1.0",
