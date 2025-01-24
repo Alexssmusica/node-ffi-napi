@@ -30,6 +30,7 @@
   "main": "./lib/ffi",
   "dependencies": {
     "@alexssmusica/ref-napi": "^4.0.14",
+    "electron-bindings": "^1.0.2",
     "debug": "^4.3.7",
     "get-uv-event-loop-napi-h": "^1.0.5",
     "node-addon-api": "^8.1.0",

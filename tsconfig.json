@@ -20,6 +20,6 @@
     },
     "files": [
       "types/index.d.ts",
-      "types/ffi-napi-tests.ts"
+      "types/node-ffi-napi-buffer.d.ts"
     ]
   }
