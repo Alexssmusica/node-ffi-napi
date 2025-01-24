@@ -1,6 +1,6 @@
 {
   "name": "@alexssmusica/ffi-napi",
-  "version": "4.0.17",
+  "version": "4.0.18",
   "license": "MIT",
   "author": "Anna Henningsen <anna@addaleax.net>",
   "contributors": [
@@ -27,7 +27,7 @@
   "main": "./lib/ffi",
   "dependencies": {
     "debug": "^4.1.1",
-    "get-uv-event-loop-napi-h": "github:Alexssmusica/get-uv-event-loop-napi-h",
+    "@alexssmusica/get-uv-event-loop-napi-h": "^1.0.6",
     "node-addon-api": "^8.1.0",
     "node-gyp-build": "^4.8.1",
     "ref-napi": "^2.0.1 || ^3.0.2",
