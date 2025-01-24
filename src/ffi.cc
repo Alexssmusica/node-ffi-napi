@@ -14,7 +14,6 @@ InstanceData* InstanceData::Get(Env env) {
 }
 
 void InstanceData::Dispose() {
-  if (async.type != UV_ASYNC) return;
   uv_close(reinterpret_cast<uv_handle_t*>(&async), [](uv_handle_t* handle) {
     InstanceData* self = static_cast<InstanceData*>(handle->data);
     uv_mutex_destroy(&self->mutex);
@@ -22,10 +21,10 @@ void InstanceData::Dispose() {
   });
 }
 
-TypedArray WrapPointerImpl(Env env, char* ptr, size_t length) {
+Value WrapPointerImpl(Env env, char* ptr, size_t length) {
   InstanceData* data = InstanceData::Get(env);
   assert(data->ref_napi_instance != nullptr);
-  return TypedArray(env, data->ref_napi_instance->WrapPointer(ptr, length));
+  return Value(env, data->ref_napi_instance->WrapPointer(ptr, length));
 }
 
 char* GetBufferDataImpl(Value val) {
@@ -178,11 +177,11 @@ void FFI::InitializeBindings(Env env, Object target) {
 Value FFI::FFIPrepCif(const Napi::CallbackInfo& args) {
   Env env = args.Env();
 
-  if (!args[0].IsBuffer())
+  if (!(args[0].IsBuffer() || args[0].IsObject()))
     throw TypeError::New(env, "prepCif(): Buffer required as cif arg");
-  if (!args[2].IsBuffer())
+  if (!(args[2].IsBuffer() || args[2].IsObject()))
     throw TypeError::New(env, "prepCif(): Buffer required as rtype arg");
-  if (!args[3].IsBuffer())
+  if (!(args[3].IsBuffer() || args[3].IsObject()))
     throw TypeError::New(env, "prepCif(): Buffer required as atypes arg");
 
   ffi_cif* cif = GetBufferData<ffi_cif>(args[0]);
@@ -212,11 +211,11 @@ Value FFI::FFIPrepCif(const Napi::CallbackInfo& args) {
 Value FFI::FFIPrepCifVar(const Napi::CallbackInfo& args) {
   Env env = args.Env();
 
-  if (!args[0].IsBuffer())
+  if (!(args[0].IsBuffer() || args[0].IsObject()))
     throw TypeError::New(env, "prepCifVar(): Buffer required as cif arg");
-  if (!args[3].IsBuffer())
+  if (!(args[3].IsBuffer() || args[3].IsObject()))
     throw TypeError::New(env, "prepCifVar(): Buffer required as rtype arg");
-  if (!args[3].IsBuffer())
+  if (!(args[4].IsBuffer() || args[4].IsObject()))
     throw TypeError::New(env, "prepCifVar(): Buffer required as atypes arg");
 
   ffi_cif* cif = GetBufferData<ffi_cif>(args[0]);
@@ -241,11 +240,14 @@ Value FFI::FFIPrepCifVar(const Napi::CallbackInfo& args) {
  */
 
 void FFI::FFICall(const Napi::CallbackInfo& args) {
-  Env env = args.Env();
-  if (!args[0].IsBuffer() || !args[1].IsBuffer() ||
-      !args[2].IsBuffer() || !args[3].IsBuffer()) {
-    throw TypeError::New(env, "ffi_call() requires 4 Buffer arguments!");
-  }
+
+//  Env env = args.Env();
+//  FIXME!!! Bring back the check
+//
+//  if (!args[0].IsBuffer() || !args[1].IsBuffer() ||
+//      !args[2].IsBuffer() || !args[3].IsBuffer()) {
+//    throw TypeError::New(env, "ffi_call() requires 4 Buffer arguments!");
+//  }
 
   ffi_cif* cif = GetBufferData<ffi_cif>(args[0]);
   char* fn = GetBufferData<char>(args[1]);
@@ -267,10 +269,14 @@ void FFI::FFICall(const Napi::CallbackInfo& args) {
 
 void FFI::FFICallAsync(const Napi::CallbackInfo& args) {
   Env env = args.Env();
-  if (!args[0].IsBuffer() || !args[1].IsBuffer() ||
-      !args[2].IsBuffer() || !args[3].IsBuffer()) {
-    throw TypeError::New(env, "ffi_call_async() requires 4 Buffer arguments!");
-  }
+
+//  FIXME!!! bring back the check
+//
+//  if (!args[0].IsBuffer() || !args[1].IsBuffer() ||
+//      !args[2].IsBuffer() || !args[3].IsBuffer()) {
+//    throw TypeError::New(env, "ffi_call_async() requires 4 Buffer arguments!");
+//  }
+
   if (!args[4].IsFunction()) {
     throw TypeError::New(env, "ffi_call_async() requires a function argument");
   }

@@ -8,7 +8,7 @@
     "Nathan Rajlich <nathan@tootallnate.net>",
     "Gabor Mezo <gabor.mezo@outlook.com>"
   ],
-  "description": "A foreign function interface (FFI) for Node.js, N-API style",
+  "description": "A foreign function interface (FFI) for Node.js, N-API style, with \"v8::ArrayBuffer::GetBackingStore\" patch",
   "keywords": [
     "foreign",
     "function",
@@ -22,29 +22,29 @@
   ],
   "homepage": "http://github.com/Alexssmusica/ffi-napi",
   "engines": {
-    "node": ">=10"
+    "node": ">=12.22.12"
   },
+  "types": "types/index.d.ts",
   "main": "./lib/ffi",
   "dependencies": {
+    "@alexssmusica/ref-napi": "^4.0.10",
     "debug": "^4.1.1",
-    "@alexssmusica/get-uv-event-loop-napi-h": "^1.0.6",
-    "node-addon-api": "^8.1.0",
-    "node-gyp-build": "^4.8.1",
-    "ref-napi": "^2.0.1 || ^3.0.2",
+    "get-uv-event-loop-napi-h": "^1.0.5",
+    "node-addon-api": "^3.2.1",
+    "node-gyp-build": "^4.5.0",
     "ref-struct-di": "^1.1.0"
   },
   "devDependencies": {
     "fs-extra": "^9.0.0",
-    "mocha": "^7.1.1",
+    "mocha": "^8.4.0",
     "nyc": "^15.0.0",
-    "prebuildify": "^4.0.0",
+    "prebuildify": "^5.0.1",
     "prebuildify-ci": "^1.0.5",
     "ref-array-di": "^1.2.1"
   },
   "scripts": {
     "install": "node-gyp-build",
-    "prebuild": "prebuildify --napi --tag-armv --tag-uv",
-    "test": "node-gyp rebuild --directory test && nyc mocha --expose-gc --reporter spec"
+    "prebuild": "prebuildify --napi --tag-armv --tag-uv"
   },
   "repository": {
     "type": "git",

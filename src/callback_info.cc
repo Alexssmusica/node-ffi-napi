@@ -83,7 +83,7 @@ void CallbackInfo::WatcherCallback(uv_async_t* w) {
 Value CallbackInfo::Callback(const Napi::CallbackInfo& args) {
   Env env = args.Env();
 
-  if (args.Length() != 5 || !args[0].IsBuffer() ||
+  if (args.Length() != 5 || !(args[0].IsBuffer() || args[0].IsObject()) ||
       !args[3].IsFunction() || !args[4].IsFunction()) {
     throw Error::New(env, "Signature: Buffer, int, int, Function, Function");
   }
@@ -133,9 +133,9 @@ Value CallbackInfo::Callback(const Napi::CallbackInfo& args) {
     throw e;
   }
 
-  TypedArray ret = WrapPointer(env, code, sizeof(void*));
-  ret.ArrayBuffer().
-      AddFinalizer(closure_pointer_cb, static_cast<char*>(code), cbInfo);
+  Value ret = WrapPointer(env, code, sizeof(void*));
+  ret.As<Object>().AddFinalizer(closure_pointer_cb, static_cast<char*>(code), cbInfo);
+
   return ret;
 }
 
