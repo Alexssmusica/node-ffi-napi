@@ -1,6 +1,6 @@
 {
   "name": "@alexssmusica/ffi-napi",
-  "version": "4.0.25",
+  "version": "4.0.26",
   "publishConfig": {
     "access": "public"
   },
@@ -30,24 +30,24 @@
   "types": "types/index.d.ts",
   "main": "./lib/ffi",
   "dependencies": {
-    "@alexssmusica/ref-napi": "^4.0.16",
-    "debug": "^4.3.7",
-    "get-uv-event-loop-napi-h": "^1.0.5",
-    "node-addon-api": "^8.1.0",
-    "node-gyp-build": "^4.8.2",
-    "ref-struct-di": "^1.1.0"
+    "@alexssmusica/ref-napi": "^4.0.17",
+    "debug": "^4.4.0",
+    "get-uv-event-loop-napi-h": "^1.0.6",
+    "node-addon-api": "^6.1.0",
+    "node-gyp-build": "^4.8.4",
+    "ref-struct-di": "^1.1.1"
   },
   "devDependencies": {
-    "fs-extra": "^11.2.0",
-    "mocha": "^10.7.3",
+    "fs-extra": "^11.3.0",
+    "mocha": "^11.1.0",
     "nyc": "^17.1.0",
-    "prebuildify": "^6.0.1",
-    "prebuildify-ci": "^1.0.5",
-    "ref-array-di": "^1.2.1"
+    "prebuild": "^13.0.1",
+    "ref-array-di": "^1.2.2"
   },
   "scripts": {
     "install": "node-gyp-build",
-    "prebuild": "prebuildify --napi --tag-armv --tag-uv"
+    "prebuild": "prebuild --napi --tag-armv --tag-uv",
+    "prebuild-electron": "prebuild --napi --tag-armv --runtime electron --target 20.0.0 --target 21.0.0 --target 22.0.0 --target 23.0.0 --target 24.0.0 --target 25.0.0 --target 26.0.0 --target 27.0.0 --target 28.0.0 --target 29.0.0 --target 30.0.0 --target 31.0.0 --target 32.0.0 --target 33.0.0 --target 34.0.0"
   },
   "repository": {
     "type": "git",
