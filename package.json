@@ -32,7 +32,7 @@
     "@alexssmusica/ref-napi": "^4.0.20",
     "debug": "^4.3.7",
     "get-uv-event-loop-napi-h": "^1.0.5",
-    "node-addon-api": "^6.1.0",
+    "node-addon-api": "^8.3.1",
     "node-gyp-build": "^4.8.2",
     "prebuild": "^13.0.1",
     "ref-struct-di": "^1.1.0"

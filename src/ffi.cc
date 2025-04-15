@@ -1,4 +1,4 @@
-#define NAPI_VERSION 9
+#define NAPI_VERSION 8
 #include "ffi.h"
 #include "fficonfig.h"
 #include <get-uv-event-loop-napi.h>
